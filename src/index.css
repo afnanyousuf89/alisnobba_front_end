@@ -119,7 +119,7 @@ ul li a:hover {
 	cursor: pointer;
 }
 
-.product .btnplus:hover{
+.product .btnplus:hover {
 	background-color: #DAAD76;
 	color: #153535;
 }
@@ -167,6 +167,8 @@ ul li a:hover {
 .showcart {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 
@@ -174,6 +176,7 @@ ul li a:hover {
 	padding: 10px;
 	border: 1px solid #c1bdbd;
 	margin: 10px;
+	text-align: center;
 }
 
 .showcart table thead {
@@ -181,7 +184,7 @@ ul li a:hover {
 }
 
 .showcart table tr td {
-	padding: 10px;
+	padding: 20px;
 }
 
 
@@ -233,4 +236,63 @@ ul li a:hover {
 	color: #153535;
 	font-size: 15pt;
 	font-weight: bold;
+}
+
+
+.noIteminCart {
+	padding: 50px;
+	font-size: 40pt;
+	text-align: center;
+
+}
+
+.goBackShopping {
+	padding: 20px;
+	background-color: #153535;
+	color: #fff;
+	font-size: 20pt;
+	text-align: center;
+	border-radius: 80px;
+	cursor: pointer;
+	width: 300px;
+	margin-top: 10px;
+}
+
+.btncheckout{
+	padding: 10px;
+	background-color: #153535;
+	color: #fff;
+	font-size: 15pt;
+	text-align: center;
+	border-radius: 80px;
+	cursor: pointer;
+	width: 150px;
+	margin-top: 10px;
+}
+
+.goBackShopping:hover, .btncheckout:hover {
+	background-color: #fff;
+	color: #153535;
+	border: 1px solid #6F732F;
+}
+
+.btnremove{
+	background-color: #cc0000;
+	color: #fff;
+	padding: 5px;
+	border-radius: 10px;
+	font-size: 10pt;
+	cursor: pointer;
+}
+
+.thankspage{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+}
+
+.thanksimg{
+	width: 30%;
 }

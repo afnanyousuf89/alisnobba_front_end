@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Qty from './Qty';
 
 export default function Product(props) {
     const { product, onclick, removefromcart, item } = props;
+    const navigate = useNavigate();
+		
     return (
 
         <div className='product'>
@@ -16,7 +18,7 @@ export default function Product(props) {
 
                 <p className='price'>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'PKR' }).format(product.pprice)}</p>
 
-                {item ? <div>
+                {/* {item ? <div>
                     
                     <div className='quantitybox'>
                     Qty:
@@ -27,7 +29,20 @@ export default function Product(props) {
                 </div> :
                     <div>
                         <p className='cartbtn' onClick={() => onclick(product)}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
-                    </div>}
+                    </div>} */}
+
+                <div>
+
+                    <div className='quantitybox'>
+                        Qty:
+                        <p className='btnplus' onClick={() => removefromcart(product,1)} >-</p>
+                        <input type='text' value={item ? item.pqty : `1`} readOnly className='quantityinput' />
+                        <p className='btnplus' onClick={() => onclick(product)} >+</p>
+                    </div>
+                </div>
+                <div>
+                    <p className='cartbtn' onClick={() => onclick(product,1,navigate('/cart'))}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
+                </div>
             </div>
         </div>
     )

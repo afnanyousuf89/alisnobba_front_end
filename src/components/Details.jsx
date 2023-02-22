@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 export default function Details(props) {
-    const {products} = props
+    const { products, onclick, removefromcart, item } = props;
     const {pid} = useParams()
     const product = products.find(pro => pro.pid == pid)
   return (
@@ -17,7 +17,7 @@ export default function Details(props) {
                 <div className='quantitybox'>
                     Qty: <input type='text' value="1" className='quantityinput' />
                 </div>
-                <p className='cartbtn' onClick={() => onclick(product,)}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
+                <p className='cartbtn' onClick={() => onclick(product)}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
             </div>
         </div>
     </div>

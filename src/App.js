@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Cart from './components/Cart';
 import Details from './components/Details';
 import Header from './components/Header'
 import Main from './components/Main'
+import Thanks from './components/Thanks';
 
 function App() {
 
@@ -35,30 +36,41 @@ function App() {
 	]);
 
 
+
+	useEffect(() => {
+
+
+		fetch(`http://localhost:8080/product`)
+			.then((response) => response.json()).then(result => { setProducts(result) });
+	}, []);
+
 	const [mycart, setmycart] = useState([]);
 
-	const addtocart = (data) => {
+	const addtocart = (data, first) => {
 		const exist = mycart.find((x) => x.pid === data.pid);
 		if (exist) {
+
 			const newItem = mycart.map((x) =>
-				x.pid == data.pid ? { ...exist, qty: exist.qty + 1 } : x
+				x.pid == data.pid && first != 1 ? { ...exist, pqty: exist.pqty + 1 } : x
 			);
+
 			setmycart(newItem);
 		}
 		else {
-			data.qty = 1;
+			data.pqty = 1;
 			setmycart([...mycart, data])
 		}
+
 	}
 
-	const removefromcart = (data) => {
+	const removefromcart = (data, r) => {
 		const exist = mycart.find((x) => x.pid === data.pid);
 		if (exist) {
 			const newItem = mycart.map((x) =>
-				x.pid == data.pid ? { ...exist, qty: exist.qty - 1 } : x
+				x.pid == data.pid ? { ...exist, pqty: exist.pqty - 1 } : x
 			);
 			setmycart(newItem);
-			if (exist.qty == 1) {
+			if (exist.pqty == 1 || r == 1) {
 				setmycart(mycart =>
 					mycart.filter(item => {
 						return item.pid !== exist.pid;
@@ -66,13 +78,34 @@ function App() {
 			}
 		}
 		else {
-			data.qty = 1;
+			data.pqty = 1;
 			setmycart([...mycart, data])
 		}
-		console.log(mycart);
 	}
 
 
+	const checkout = () => {
+
+		const finalCart = [...mycart].map(x => ({ ...x, ptotoalprice: x.pprice * x.pqty }))
+
+		// console.log(finalCart);
+
+		fetch('http://localhost:8081/order', {
+			method: 'POST',
+			body: JSON.stringify(finalCart),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8',
+			},
+		}).then((post) => {
+				console.log('Data Saved');
+				
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+			
+			setmycart([])
+	}
 
 
 	return (
@@ -82,8 +115,9 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Header items={mycart.length} />}>
 						<Route index element={<Main productlist={products} onclick={addtocart} removefromcart={removefromcart} mycart={mycart} />} />
-						<Route path='/cart' element={<Cart mycart={mycart} />} />
-						<Route path='/product/:pid' element={<Details products={products} />} />
+						<Route path='/cart' element={<Cart mycart={mycart} removefromcart={removefromcart} checkout={checkout} />} />
+						<Route path='/product/:pid' element={<Details products={products} onclick={addtocart} removefromcart={removefromcart} mycart={mycart} />} />
+						<Route path='/thanks' element={<Thanks />}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>
