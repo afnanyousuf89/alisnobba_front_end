@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom';
+import Logo from '../img/logo.png'
 
 function Header(props) {
   const { items } = props;
@@ -7,7 +8,7 @@ function Header(props) {
     <div>
       <div className='header'>
         <Link to="/">
-          <img src="Logo.png" className='logo' />
+          <img src={Logo} className='logo' />
         </Link>
         <Link to='/cart'>
           <p><i className='fa-solid fa-shopping-cart'></i> <sup className='countitem'>{items}</sup> Cart</p>

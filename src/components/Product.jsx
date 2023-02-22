@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Qty from './Qty';
 
 export default function Product(props) {
-    const { product, onclick } = props;
+    const { product, onclick, removefromcart, item } = props;
     return (
 
         <div className='product'>
@@ -12,15 +13,21 @@ export default function Product(props) {
                 <p>{product.pshort}</p>
             </div>
             <div className='addtocart-area'>
-            
+
                 <p className='price'>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'PKR' }).format(product.pprice)}</p>
-                <div className='quantitybox'>
-                    Qty: 
-                    <p className='btnplus'>-</p>
-                    <input type='text' onChange={()=>{}} value="1" className='quantityinput' />
-                    <p className='btnplus'>+</p>
-                </div>
-                <p className='cartbtn' onClick={() => onclick(product)}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
+
+                {item ? <div>
+                    
+                    <div className='quantitybox'>
+                    Qty:
+                        <p className='btnplus' onClick={() => removefromcart(product)} >-</p>
+                        <input type='text' value={item.qty} readOnly className='quantityinput' />
+                        <p className='btnplus' onClick={() => onclick(product)} >+</p>
+                    </div>
+                </div> :
+                    <div>
+                        <p className='cartbtn' onClick={() => onclick(product)}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
+                    </div>}
             </div>
         </div>
     )
