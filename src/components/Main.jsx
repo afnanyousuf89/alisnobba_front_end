@@ -10,7 +10,7 @@ function Main(props) {
 				{
 					productlist.map(pro => {
 						return (
-						<Product product={pro} onclick={onclick}  />
+						<Product key={pro.pid} product={pro} onclick={onclick}  />
 						)
 					})
 				}

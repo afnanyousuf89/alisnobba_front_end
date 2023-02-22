@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart';
+import Details from './components/Details';
 import Header from './components/Header'
 import Main from './components/Main'
 
@@ -10,7 +12,7 @@ function App() {
 			"pid": 1,
 			"pname": "Ruby Slippers",
 			"pshort": "An impressive pair of slippers  featuring   thousands of real rubies.",
-			"plong": "An impressive pair of slippers  featuring   thousands of real rubies.",
+			"plong": "An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.",
 			"pprice": "684750000",
 			"pimg": "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg"
 		},
@@ -44,9 +46,20 @@ function App() {
 
 	return (
 		<div>
-			<Header items={mycart.length} />
-			<Main productlist={products} onclick={addtocart} />
-			<Cart mycart={mycart} />
+
+			<BrowserRouter>
+				<Routes>
+					<Route path='/' element={<Header items={mycart.length} />}>
+						<Route index element={<Main productlist={products} onclick={addtocart} />} />
+						<Route path='/cart' element={<Cart mycart={mycart} />} />
+						<Route path='/product/:pid' element={<Details products={products} />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+
+
+
+
 		</div>
 	);
 }

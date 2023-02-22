@@ -27,9 +27,6 @@ export default function Cart(props) {
                                     <td>{x.qty}</td>
                                     <td>{x.qty*x.pprice}</td>
                                 </tr>
-
-
-
                             );
 
                         })
