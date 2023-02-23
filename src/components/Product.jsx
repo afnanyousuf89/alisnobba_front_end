@@ -5,7 +5,7 @@ import Qty from './Qty';
 export default function Product(props) {
     const { product, onclick, removefromcart, item } = props;
     const navigate = useNavigate();
-		
+
     return (
 
         <div className='product'>
@@ -35,13 +35,17 @@ export default function Product(props) {
 
                     <div className='quantitybox'>
                         Qty:
-                        <p className='btnplus' onClick={() => removefromcart(product,1)} >-</p>
+                        <p className='btnplus' onClick={() => removefromcart(product, 0)} >-</p>
                         <input type='text' value={item ? item.pqty : `1`} readOnly className='quantityinput' />
-                        <p className='btnplus' onClick={() => onclick(product)} >+</p>
+                        <p className='btnplus' onClick={() => onclick(product,1)} >+</p>
                     </div>
                 </div>
                 <div>
-                    <p className='cartbtn' onClick={() => onclick(product,1,navigate('/cart'))}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p>
+                    {!item ? 
+                    <p className='cartbtn' onClick={() => onclick(product, 1, navigate('/cart'))}><i className='fa-solid fa-shopping-cart'></i> Add to Cart</p> 
+                    :
+                    <p className='cartbtnview' onClick={() => onclick(product, 0, navigate('/cart'))}><i className='fa-solid fa-shopping-cart'></i> View Cart</p>
+                    }
                 </div>
             </div>
         </div>

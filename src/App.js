@@ -51,7 +51,7 @@ function App() {
 		if (exist) {
 
 			const newItem = mycart.map((x) =>
-				x.pid == data.pid && first != 1 ? { ...exist, pqty: exist.pqty + 1 } : x
+				x.pid == data.pid && first == 1 ? { ...exist, pqty: exist.pqty + 1 } : x
 			);
 
 			setmycart(newItem);
@@ -77,10 +77,6 @@ function App() {
 					}))
 			}
 		}
-		else {
-			data.pqty = 1;
-			setmycart([...mycart, data])
-		}
 	}
 
 
@@ -97,14 +93,14 @@ function App() {
 				'Content-type': 'application/json; charset=UTF-8',
 			},
 		}).then((post) => {
-				console.log('Data Saved');
-				
-			})
+			console.log('Data Saved');
+
+		})
 			.catch((err) => {
 				console.log(err.message);
 			});
-			
-			setmycart([])
+
+		setmycart([])
 	}
 
 
@@ -117,14 +113,10 @@ function App() {
 						<Route index element={<Main productlist={products} onclick={addtocart} removefromcart={removefromcart} mycart={mycart} />} />
 						<Route path='/cart' element={<Cart mycart={mycart} removefromcart={removefromcart} checkout={checkout} />} />
 						<Route path='/product/:pid' element={<Details products={products} onclick={addtocart} removefromcart={removefromcart} mycart={mycart} />} />
-						<Route path='/thanks' element={<Thanks />}/>
+						<Route path='/thanks' element={<Thanks />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
-
-
-
-
 		</div>
 	);
 }

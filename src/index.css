@@ -142,6 +142,14 @@ ul li a:hover {
 	text-align: center;
 }
 
+.cartbtnview{
+	padding: 10px;
+	background-color: #153535;
+	color: #fff;
+	cursor: pointer;
+	text-align: center;
+}
+
 .cartbtn:hover {
 	border: 1px solid #153535;
 	color: #DAAD76;
@@ -160,6 +168,16 @@ ul li a:hover {
 	padding: 10px;
 	width: 50px;
 	text-align: center;
+}
+
+/*detail page*/
+
+.quantityboxDetailPage{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px;
+	width: 40%;
 }
 
 
@@ -295,4 +313,16 @@ ul li a:hover {
 
 .thanksimg{
 	width: 30%;
+}
+
+
+.totalamt{
+	display: flex;
+	justify-content: right;
+	font-size: 20pt;
+	padding: 10px;
+}
+.totalamt span{
+	font-weight: bolder;
+	margin-left: 10px;
 }
