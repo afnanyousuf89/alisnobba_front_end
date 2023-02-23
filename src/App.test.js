@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import Header from './components/Header';
-
-
+import Qty from './components/Qty';
 
 test("Checking Logo to be Exist",()=>{
   render(<App/>);
@@ -10,4 +8,8 @@ test("Checking Logo to be Exist",()=>{
   expect(logo).toBeInTheDocument();
 })
 
-
+test("Checking Quantity Box to be Exist",()=>{
+  render(<Qty/>);
+  const logo = screen.getByTestId('qtyBox');
+  expect(logo).toBeInTheDocument();
+})

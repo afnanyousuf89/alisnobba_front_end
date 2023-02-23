@@ -17,29 +17,12 @@ function App() {
 
 
 	const [products, setProducts] = useState([
-		{
-			"pid": 1,
-			"pname": "Ruby Slippers",
-			"pshort": "An impressive pair of slippers  featuring   thousands of real rubies.",
-			"plong": "An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.An impressive pair of slippers  featuring   thousands of real rubies.",
-			"pprice": "684750000",
-			"pimg": "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg"
-		},
-		{
-			"pid": 2,
-			"pname": "Chocolate Pudding",
-			"pshort": "This better be the best pudding you ever ate!",
-			"plong": "An impressive pair of slippers  featuring   thousands of real rubies.",
-			"pprice": "684750000",
-			"pimg": "https://raw.githubusercontent.com/jeff-lent/Alisnobba/main/Capstone/ActualRubyRubySlippers.jpg"
-		}
+		
 	]);
 
 
 
 	useEffect(() => {
-
-
 		fetch(`http://localhost:8080/product`)
 			.then((response) => response.json()).then(result => { setProducts(result) });
 	}, []);

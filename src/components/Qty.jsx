@@ -5,7 +5,7 @@ export default function Qty(props) {
     return (
         <>
             <p className='btnplus' onClick={()=>q(-1)}>-</p>
-            <input type='text' onChange={() => { }} value={q} className='quantityinput' />
+            <input data-testid="qtyBox" type='text' onChange={() => { }} value={q} className='quantityinput' />
             <p className='btnplus' onClick={()=>q(1)}>+</p>
         </>
     )
